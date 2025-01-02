@@ -1,7 +1,81 @@
+import { useState, useEffect } from 'react';
+import SearchForm from '../components/SearchForm';
+import PropertyCard from '../components/PropertyCard';
+import data from '../data/properties.json';
+import { parsePropertyDate } from '../utils/utils';
 import '../styles/SearchPage.css';
 
 export default function SearchPage() {
+    const [properties, setProperties] = useState([]);
+    const [filteredProperties, setFilteredProperties] = useState([]);
+
+    // Load properties data on component mount
+    useEffect(() => {
+        setProperties(data.properties);
+        setFilteredProperties(data.properties);
+    }, []);
+
+    // Handle search form submission and filter properties
+    const handleSearch = (filters) => {
+        let results = properties;
+
+        // Filter by property type
+        if (filters.type !== 'any') {
+            results = results.filter((p) => p.type === filters.type);
+        }
+
+        // Filter by price range
+        results = results.filter(
+            (p) => p.price >= filters.minPrice && p.price <= filters.maxPrice
+        );
+
+        // Filter by bedroom count
+        results = results.filter(
+            (p) => p.bedrooms >= filters.minBedrooms && p.bedrooms <= filters.maxBedrooms
+        );
+
+        // Filter by postcode area (case-insensitive)
+        if (filters.postcodeArea) {
+            results = results.filter((p) =>
+                p.location.toLowerCase().includes(filters.postcodeArea.toLowerCase())
+            );
+        }
+
+        // Filter by date added range
+        if (filters.dateAddedStart && filters.dateAddedEnd) {
+            results = results.filter((p) => {
+                const propertyDate = parsePropertyDate(p.added);
+                return propertyDate >= filters.dateAddedStart && propertyDate <= filters.dateAddedEnd;
+            });
+        }
+
+        setFilteredProperties(results);
+    };
+
     return (
-        <div className="search-page"></div>
+        <div className="search-page">
+            <div className="container search-layout">
+                {/* Main content: search form and results */}
+                <div className="search-main">
+                    <h1>Properties for Sale</h1>
+                    <SearchForm onSearch={handleSearch} />
+
+                    <div className="results-grid">
+                        {filteredProperties.length > 0 ? (
+                            filteredProperties.map((property) => (
+                                <PropertyCard
+                                    key={property.id}
+                                    property={property}
+                                />
+                            ))
+                        ) : (
+                            <div className="no-results">
+                                No properties found matching your criteria.
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 }

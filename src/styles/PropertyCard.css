@@ -1,0 +1,100 @@
+.property-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    cursor: grab;
+}
+
+.property-card:active {
+    cursor: grabbing;
+}
+
+.card-image-container {
+    height: 200px;
+    background-color: #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.card-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-placeholder {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.card-content {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.price {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.type-badge {
+    background: #e0f2fe;
+    color: #0369a1;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.location {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0.5rem 0;
+}
+
+.description-preview {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+.card-footer {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.btn-outline {
+    border: 1px solid var(--border-color);
+    background: transparent;
+    color: var(--text-primary);
+}
+
+.btn-outline:hover {
+    background: var(--background-color);
+}
+
+.card-footer .btn {
+    flex: 1;
+}
+
+.date-added {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    margin-top: 1rem;
+    text-align: right;
+}

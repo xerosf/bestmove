@@ -1,0 +1,42 @@
+.search-form {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.search-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+}
+
+.range-inputs {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-actions {
+    margin-top: 1.5rem;
+    text-align: right;
+}
+
+.search-btn {
+    width: 100%;
+    /* Mobile first */
+}
+
+/* Tablet and above */
+@media (min-width: 768px) {
+    .search-btn {
+        width: auto;
+    }
+}
