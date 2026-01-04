@@ -1,11 +1,11 @@
 .navbar {
-    background: var(--surface-color);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border-color);
-    padding: 1rem 0;
+    background: var(--primary-color);
+    color: white;
+    padding: 15px 0;
+    margin-bottom: 20px;
     position: sticky;
     top: 0;
-    z-index: 50;
+    z-index: 1000;
 }
 
 .navbar-content {
@@ -16,27 +16,23 @@
 
 .brand-logo {
     font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary-color);
+    font-weight: bold;
+    color: white;
     text-decoration: none;
-}
-
-.brand-logo:hover {
-    opacity: 0.9;
 }
 
 .nav-links {
     display: flex;
-    gap: 1.5rem;
+    gap: 20px;
 }
 
 .nav-link {
     text-decoration: none;
-    color: var(--text-primary);
-    font-weight: 500;
-    transition: color 0.2s;
+    color: #ddd;
+    font-weight: normal;
 }
 
 .nav-link:hover {
-    color: var(--primary-color);
+    color: white;
+    text-decoration: underline;
 }
