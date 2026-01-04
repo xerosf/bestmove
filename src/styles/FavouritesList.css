@@ -1,0 +1,135 @@
+.favourites-sidebar {
+    padding: 1rem;
+    position: sticky;
+    top: 100px;
+    max-height: calc(100vh - 120px);
+    display: flex;
+    flex-direction: column;
+}
+
+.fav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.fav-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.btn-text {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 0.8rem;
+    text-decoration: underline;
+}
+
+.btn-text:hover {
+    color: var(--primary-color);
+}
+
+.fav-list {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.empty-msg {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.fav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    background: #f8fafc;
+    border-radius: var(--radius-sm);
+    cursor: grab;
+    transition: background 0.2s;
+    position: relative;
+}
+
+.fav-item:active {
+    cursor: grabbing;
+}
+
+.fav-item:hover {
+    background: #f1f5f9;
+}
+
+.fav-thumb {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+}
+
+.fav-info {
+    flex: 1;
+    cursor: pointer;
+}
+
+.fav-info h4 {
+    margin: 0 0 0.25rem 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.fav-price {
+    font-size: 0.8rem;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.6;
+    transition: all 0.2s;
+}
+
+.remove-btn:hover {
+    opacity: 1;
+    color: #ef4444;
+}
+
+.trash-zone {
+    margin-top: 1rem;
+    border: 2px dashed #cbd5e1;
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+}
+
+.trash-zone:hover,
+.trash-zone.drag-over {
+    border-color: #ef4444;
+    color: #ef4444;
+    background: #fef2f2;
+}

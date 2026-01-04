@@ -1,11 +1,18 @@
+import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import SearchForm from '../components/SearchForm';
 import PropertyCard from '../components/PropertyCard';
+import FavouritesList from '../components/FavouritesList';
 import data from '../data/properties.json';
 import { parsePropertyDate } from '../utils/utils';
 import '../styles/SearchPage.css';
 
-export default function SearchPage() {
+export default function SearchPage({
+    favourites,
+    onAddFavourite,
+    onRemoveFavourite,
+    onClearFavourites,
+}) {
     const [properties, setProperties] = useState([]);
     const [filteredProperties, setFilteredProperties] = useState([]);
 
@@ -52,6 +59,16 @@ export default function SearchPage() {
         setFilteredProperties(results);
     };
 
+    // Handle drop event on favourites sidebar
+    const handleSidebarDrop = (e) => {
+        e.preventDefault();
+        const type = e.dataTransfer.getData('type');
+        if (type === 'property-card') {
+            const propertyData = JSON.parse(e.dataTransfer.getData('application/json'));
+            onAddFavourite(propertyData);
+        }
+    };
+
     return (
         <div className="search-page">
             <div className="container search-layout">
@@ -66,6 +83,7 @@ export default function SearchPage() {
                                 <PropertyCard
                                     key={property.id}
                                     property={property}
+                                    onAddFavourite={onAddFavourite}
                                 />
                             ))
                         ) : (
@@ -75,7 +93,28 @@ export default function SearchPage() {
                         )}
                     </div>
                 </div>
+
+                {/* Sidebar: favourites list with drop zone */}
+                <aside
+                    className="search-sidebar"
+                    onDragOver={(e) => e.preventDefault()}
+                    onDrop={handleSidebarDrop}
+                >
+                    <FavouritesList
+                        favourites={favourites}
+                        onRemoveFavourite={onRemoveFavourite}
+                        onClearFavourites={onClearFavourites}
+                    />
+                </aside>
             </div>
         </div>
     );
 }
+
+// PropTypes for type checking and documentation
+SearchPage.propTypes = {
+    favourites: PropTypes.array.isRequired,
+    onAddFavourite: PropTypes.func.isRequired,
+    onRemoveFavourite: PropTypes.func.isRequired,
+    onClearFavourites: PropTypes.func.isRequired,
+};

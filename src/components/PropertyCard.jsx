@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { formatPrice } from '../utils/utils';
 import '../styles/PropertyCard.css';
 
-export default function PropertyCard({ property }) {
+export default function PropertyCard({ property, onAddFavourite }) {
     const { id, type, bedrooms, price, description, location, picture, added } = property;
 
     // Handle drag start event to set data for drop
@@ -37,6 +37,9 @@ export default function PropertyCard({ property }) {
 
                 <div className="card-footer">
                     <Link to={`/property/${id}`} className="btn btn-outline">View Details</Link>
+                    <button className="btn btn-primary" onClick={() => onAddFavourite(property)}>
+                        Save
+                    </button>
                 </div>
 
                 <div className="date-added">
@@ -63,4 +66,5 @@ PropertyCard.propTypes = {
             year: PropTypes.number.isRequired,
         }).isRequired,
     }).isRequired,
+    onAddFavourite: PropTypes.func.isRequired,
 };
