@@ -56,7 +56,7 @@ export default function FavouritesList({ favourites, onRemoveFavourite, onClearF
             {/* Favourites list */}
             <div className="fav-list">
                 {favourites.length === 0 ? (
-                    <p className="empty-msg">Drag properties here or click ♥ Save to add.</p>
+                    <p className="empty-msg">Drag properties here or click Save to add.</p>
                 ) : (
                     favourites.map((fav) => (
                         <div

@@ -6,7 +6,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 import '../styles/SearchForm.css';
 
 export default function SearchForm({ onSearch }) {
-    const initialFilters = {
+    // Search filter state with sensible defaults
+    const [filters, setFilters] = useState({
         type: 'any',
         minPrice: 0,
         maxPrice: 2000000,
@@ -15,10 +16,7 @@ export default function SearchForm({ onSearch }) {
         dateAddedStart: null,
         dateAddedEnd: null,
         postcodeArea: '',
-    };
-
-    // Search filter state with sensible defaults
-    const [filters, setFilters] = useState(initialFilters);
+    });
 
     // Property type options for the Select widget
     const typeOptions = [
@@ -27,18 +25,18 @@ export default function SearchForm({ onSearch }) {
         { value: 'Flat', label: 'Flat' },
     ];
 
-    // Handle property type selection
+    // Handle property type selection change
     const handleTypeChange = (selectedOption) => {
         setFilters({ ...filters, type: selectedOption.value });
     };
 
-    // Handle generic input changes
+    // Handle input changes for text and number fields
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFilters({ ...filters, [name]: value });
     };
 
-    // Handle date range selection
+    // Handle date range selection change
     const handleDateChange = (dates) => {
         const [start, end] = dates;
         setFilters({ ...filters, dateAddedStart: start, dateAddedEnd: end });
@@ -50,12 +48,6 @@ export default function SearchForm({ onSearch }) {
         onSearch(filters);
     };
 
-    // Handle reset filters
-    const handleReset = () => {
-        setFilters(initialFilters);
-        onSearch(initialFilters);
-    };
-
     return (
         <form className="search-form card" onSubmit={handleSubmit}>
             <div className="search-grid">
@@ -64,7 +56,7 @@ export default function SearchForm({ onSearch }) {
                     <label className="form-label">Property Type</label>
                     <Select
                         options={typeOptions}
-                        value={typeOptions.find(opt => opt.value === filters.type)}
+                        defaultValue={typeOptions[0]}
                         onChange={handleTypeChange}
                         className="react-select-container"
                         classNamePrefix="react-select"
@@ -148,9 +140,6 @@ export default function SearchForm({ onSearch }) {
             </div>
 
             <div className="form-actions">
-                <button type="button" className="btn btn-outline reset-btn" onClick={handleReset}>
-                    Reset Filters
-                </button>
                 <button type="submit" className="btn btn-primary search-btn">
                     Search Properties
                 </button>
