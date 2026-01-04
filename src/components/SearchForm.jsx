@@ -6,8 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import '../styles/SearchForm.css';
 
 export default function SearchForm({ onSearch }) {
-    // Search filter state with sensible defaults
-    const [filters, setFilters] = useState({
+    const initialFilters = {
         type: 'any',
         minPrice: 0,
         maxPrice: 2000000,
@@ -16,7 +15,10 @@ export default function SearchForm({ onSearch }) {
         dateAddedStart: null,
         dateAddedEnd: null,
         postcodeArea: '',
-    });
+    };
+
+    // Search filter state with sensible defaults
+    const [filters, setFilters] = useState(initialFilters);
 
     // Property type options for the Select widget
     const typeOptions = [
@@ -48,6 +50,12 @@ export default function SearchForm({ onSearch }) {
         onSearch(filters);
     };
 
+    // Handle reset filters
+    const handleReset = () => {
+        setFilters(initialFilters);
+        onSearch(initialFilters);
+    };
+
     return (
         <form className="search-form card" onSubmit={handleSubmit}>
             <div className="search-grid">
@@ -56,7 +64,7 @@ export default function SearchForm({ onSearch }) {
                     <label className="form-label">Property Type</label>
                     <Select
                         options={typeOptions}
-                        defaultValue={typeOptions[0]}
+                        value={typeOptions.find(opt => opt.value === filters.type)}
                         onChange={handleTypeChange}
                         className="react-select-container"
                         classNamePrefix="react-select"
@@ -140,6 +148,9 @@ export default function SearchForm({ onSearch }) {
             </div>
 
             <div className="form-actions">
+                <button type="button" className="btn btn-outline reset-btn" onClick={handleReset}>
+                    Reset Filters
+                </button>
                 <button type="submit" className="btn btn-primary search-btn">
                     Search Properties
                 </button>

@@ -22,11 +22,7 @@ export const MONTH_MAP = {
     December: 11,
 };
 
-/**
- * Format a price number as GBP currency
- * @param {number} price - The price to format
- * @returns {string} Formatted price string (e.g., "£500,000")
- */
+// Format a price number as GBP currency
 export function formatPrice(price) {
     return new Intl.NumberFormat('en-GB', {
         style: 'currency',
@@ -35,26 +31,7 @@ export function formatPrice(price) {
     }).format(price);
 }
 
-/**
- * Parse a property date object into a JavaScript Date
- * @param {{ day: number, month: string, year: number }} added - The date object from property data
- * @returns {Date} JavaScript Date object
- */
+// Parse property added date from data format to JavaScript Date object
 export function parsePropertyDate(added) {
     return new Date(added.year, MONTH_MAP[added.month], added.day);
-}
-
-/**
- * Encode HTML special characters to prevent XSS
- * @param {string} str - The string to encode
- * @returns {string} HTML-encoded string
- */
-export function encodeHTML(str) {
-    if (!str) return '';
-    return str
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
 }

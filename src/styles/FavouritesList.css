@@ -1,10 +1,9 @@
 .favourites-sidebar {
-    padding: 1rem;
-    position: sticky;
-    top: 100px;
-    max-height: calc(100vh - 120px);
+    padding: 1.25rem;
     display: flex;
     flex-direction: column;
+    height: 100%;
+    max-height: calc(100vh - 140px);
 }
 
 .fav-header {
@@ -128,8 +127,86 @@
 }
 
 .trash-zone:hover,
-.trash-zone.drag-over {
+.trash-zone.drag-active {
     border-color: #ef4444;
     color: #ef4444;
     background: #fef2f2;
+}
+
+/* Sideways scrolling favourites list on mobile */
+@media (max-width: 768px) {
+    .favourites-sidebar {
+        max-height: none;
+        padding: 1rem;
+    }
+
+    .fav-list {
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        gap: 0.75rem;
+        padding-bottom: 0.5rem;
+        scrollbar-width: thin;
+    }
+
+    .fav-list::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .fav-list::-webkit-scrollbar-track {
+        background: #f1f5f9;
+        border-radius: 3px;
+    }
+
+    .fav-list::-webkit-scrollbar-thumb {
+        background: var(--border-color);
+        border-radius: 3px;
+    }
+
+    .fav-item {
+        flex-shrink: 0;
+        width: 160px;
+        flex-direction: column;
+        text-align: center;
+        padding: 0.75rem;
+    }
+
+    .fav-thumb {
+        width: 60px;
+        height: 60px;
+    }
+
+    .fav-info h4 {
+        font-size: 0.75rem;
+    }
+
+    .fav-price {
+        font-size: 0.75rem;
+    }
+
+    .remove-btn {
+        position: absolute;
+        top: 0.25rem;
+        right: 0.25rem;
+    }
+
+    .trash-zone {
+        margin-top: 0.75rem;
+        padding: 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    .empty-msg {
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 480px) {
+    .fav-header h3 {
+        font-size: 1rem;
+    }
+
+    .fav-item {
+        width: 140px;
+    }
 }

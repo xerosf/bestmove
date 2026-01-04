@@ -1,16 +1,20 @@
-# React + Vite
+# BestMove Properties
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**5COSC026W Advanced Client-Side Web Development**: Final Coursework
 
-Currently, two official plugins are available:
+A React-based web application for browsing, favourites, and viewing property listings. Features include dynamic filtering, drag-and-drop reordering of favourites, and responsive design for mobile.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Acknowledgements
 
-## React Compiler
+I hereby declare that this coursework is my own work, and that I have acknowledged all sources used in its preparation.
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+**All illustrative images are generated using AI.**
 
-## Expanding the ESLint configuration
+### Contact
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| - | - |
+| --- | --- |
+| Student Name | Sansith Fernando |
+| UoW ID | W2120244 |
+| IIT ID | 20231604 |
+| IIT Email | sansith.20231604@iit.ac.lk |

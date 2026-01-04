@@ -26,7 +26,9 @@
 
 .form-actions {
     margin-top: 1.5rem;
-    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
 }
 
 .search-btn {

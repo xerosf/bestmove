@@ -88,7 +88,12 @@
     background: var(--background-color);
 }
 
-.card-footer .btn {
+.card-footer .btn-outline {
+    flex: 2;
+    white-space: nowrap;
+}
+
+.card-footer .btn-primary {
     flex: 1;
 }
 

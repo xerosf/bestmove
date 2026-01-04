@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import SearchForm from '../components/SearchForm';
 import PropertyCard from '../components/PropertyCard';
 import FavouritesList from '../components/FavouritesList';
@@ -13,14 +13,8 @@ export default function SearchPage({
     onRemoveFavourite,
     onClearFavourites,
 }) {
-    const [properties, setProperties] = useState([]);
-    const [filteredProperties, setFilteredProperties] = useState([]);
-
-    // Load properties data on component mount
-    useEffect(() => {
-        setProperties(data.properties);
-        setFilteredProperties(data.properties);
-    }, []);
+    const [properties] = useState(data.properties);
+    const [filteredProperties, setFilteredProperties] = useState(data.properties);
 
     // Handle search form submission and filter properties
     const handleSearch = (filters) => {

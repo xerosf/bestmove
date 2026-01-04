@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { formatPrice } from '../utils/utils';
 import '../styles/FavouritesList.css';
 
 export default function FavouritesList({ favourites, onRemoveFavourite, onClearFavourites }) {
     const navigate = useNavigate();
+    const [isTrashActive, setIsTrashActive] = useState(false);
 
     // Handle drag over event to allow drop
     const handleDragOver = (e) => {
@@ -21,11 +23,22 @@ export default function FavouritesList({ favourites, onRemoveFavourite, onClearF
     // Handle drop event in trash zone to remove favourite
     const handleTrashDrop = (e) => {
         e.preventDefault();
+        setIsTrashActive(false);
         const type = e.dataTransfer.getData('type');
         if (type === 'favourite-item') {
             const data = JSON.parse(e.dataTransfer.getData('application/json'));
             onRemoveFavourite(data.id);
         }
+    };
+
+    const handleTrashDragEnter = (e) => {
+        e.preventDefault();
+        setIsTrashActive(true);
+    };
+
+    const handleTrashDragLeave = (e) => {
+        e.preventDefault();
+        setIsTrashActive(false);
     };
 
     return (
@@ -74,9 +87,11 @@ export default function FavouritesList({ favourites, onRemoveFavourite, onClearF
 
             {/* Trash zone for drag-to-remove */}
             <div
-                className="trash-zone"
+                className={`trash-zone ${isTrashActive ? 'drag-active' : ''}`}
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={handleTrashDrop}
+                onDragEnter={handleTrashDragEnter}
+                onDragLeave={handleTrashDragLeave}
             >
                 🗑️ Drop here to remove
             </div>
